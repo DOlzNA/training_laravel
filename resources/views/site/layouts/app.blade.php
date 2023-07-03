@@ -20,7 +20,7 @@
 <body class="font-sans antialiased">
 
 <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-    @include('layouts.navigation')
+    @include('site.layouts.navigation')
 
     <!-- Page Heading -->
     @if (isset($header))
@@ -33,9 +33,9 @@
 
     <!-- Page Content -->
     <main>
-        {{$slot ??null}}
-
-            </main>
-        </div>
-    </body>
+        {{--        {{$slot ??null}}--}}
+        @yield('content')
+    </main>
+</div>
+</body>
 </html>

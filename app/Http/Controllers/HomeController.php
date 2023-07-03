@@ -30,13 +30,13 @@ class HomeController extends Controller
     public function editAllUsers()
     {
         $users = User::get();
-        return view('users', compact('users'));
+        return view('crm.users.users', compact('users'));
     }
 
     public function editUser(Request $request, User $user)
     {
 
-        return view('edit', compact('user'));
+        return view('crm.users.edit', compact('user'));
     }
 
     /**
@@ -54,5 +54,13 @@ class HomeController extends Controller
         ]);
         $user->save();
         return view('dashboard');
+    }
+
+    public function destroy(Request $request, User $user)
+    {
+        $user->delete($request);
+
+
+        return redirect()->route('crm.users');
     }
 }

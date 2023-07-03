@@ -1,8 +1,6 @@
-<!doctype html>
-<html lang="en">
-<x-app-layout>
-<body>
+@extends('site.layouts.app')
+@section('content')
+    <div>123</div>
+@endsection
 
-</body>
-</x-app-layout>
-</html>
+

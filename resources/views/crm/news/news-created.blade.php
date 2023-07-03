@@ -1,4 +1,5 @@
-<x-app-layout>
+@extends('crm.layouts.app')
+@section('content')
 
     <div class="container">
         <div class="row justify-content-center">
@@ -6,9 +7,10 @@
                 <div class="row justify-content-end">
                     <div class="col-auto">
 
-                        {{Form::model($user,['url'=>route('users.update',$user),'method'=>'POST'])}}
+                        {{Form::open(['url'=>route('crm.news.store'),'method'=>'POST',"enctype"=>"multipart/form-data"])}}
 
-                        @include('_forms',$user)
+                        @include('forms.news-form')
+
                         <button class="btn btn-primary rounded-pill px-3">
                             Сохранить
                         </button>
@@ -20,4 +22,4 @@
 
         </div>
     </div>
-</x-app-layout>
+@endsection

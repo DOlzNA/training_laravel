@@ -56,7 +56,6 @@ class User extends Authenticatable
         'email',
         'password',
     ];
-
     /**
      * @return string
      */
