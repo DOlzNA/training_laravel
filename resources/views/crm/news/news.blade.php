@@ -49,6 +49,11 @@
                         </button>
                         {{Form::close()}}
 
+                        <a href="{{route('crm.news.edit',$news_items)}}" class="btn btn-success">
+
+                            Редактировать
+                        </a>
+
                     </div>
                 </div>
             </div>

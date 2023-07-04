@@ -39,7 +39,6 @@
     <!-- Page Content -->
     <main>
         @yield('content')
-        123
     </main>
 </div>
 </body>

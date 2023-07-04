@@ -6,7 +6,7 @@
         <input name="{{$name}}" type="{{$type ?? 'string'}}" value="{{$value}}" class="form-control "
                aria-label="" aria-describedby="basic-addon1">
     @else
-        <input id="x" type="hidden" name="discription" value="" />
+        <input id="x" type="hidden" name="discription" value="{!! $value !!}" />
         <trix-editor input="x" class="trix-content"></trix-editor>
     @endif
 </div>

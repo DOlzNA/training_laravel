@@ -2,7 +2,7 @@
 'label'=>'имя',
 'name'=>'name',
 'type'=>'string',
-'value'=>isset($news)?$news->getNewsName():'',
+'value'=>isset($news)?$news->getName():'',
 ])
 @include('forms._input',[
 'label'=>'Изображение',
@@ -14,7 +14,7 @@
 'label'=>'Текст',
 'name'=>'discription',
 'type'=>'trix',
-'value'=>isset($news)?$news->getDicription():'',
+'value'=>isset($news)?$news->getDiscription():'',
 
 ])
 @include('forms._input',[

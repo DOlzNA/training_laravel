@@ -44,6 +44,8 @@ Route::group([
     Route::get('/news/created', 'App\Http\Controllers\NewsController@create')->name('news.created');
     Route::POST('/news/store', 'App\Http\Controllers\NewsController@store')->name('news.store');
     Route::get('/news', 'App\Http\Controllers\NewsController@index')->name('news.index');
+    Route::get('/news/{news}/edit', 'App\Http\Controllers\NewsController@edit')->name('news.edit');
+    Route::post('/news/{news}/update', 'App\Http\Controllers\NewsController@update')->name('news.update');
     Route::delete('/news/{news}','App\Http\Controllers\NewsController@destroy')->name('news.destroy');
 });
 require __DIR__ . '/auth.php';

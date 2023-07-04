@@ -63,11 +63,43 @@ class NewsController extends Controller
         }
         return redirect()->route('crm.news.index');
     }
+
     public function destroy(Request $request, News $news)
     {
         $news->delete($request);
 
 
+        return redirect()->route('crm.news.index');
+    }
+
+    public function edit(Request $request, News $news)
+    {
+        return view('crm.news.news-edit', compact('news'));
+    }
+
+    public function update(Request $request, News $news)
+    {
+        $frd = $request;
+        $news->update([
+            'name' => $frd['name'] ?? '',
+            'image_url' => $frd['image_url'] ?? '',
+            'discription' => $frd['discription'] ?? '',
+            'ordering' => $frd['ordering'] ?? '',
+        ]);
+        if (isset($frd['image_url'])) {
+
+            /**
+             * @var Media $newsMedia
+             */
+            $newsMedia = $news->addMedia($request->file('image_url'))->toMediaCollection('news-imgs')->first();
+
+            if ($newsMedia !== null) {
+                $news->setImageUrl(str_replace(config('app.url'), '', $newsMedia->getUrl()));
+                $news->save();
+
+                $news->save();
+            }
+        }
         return redirect()->route('crm.news.index');
     }
 }
