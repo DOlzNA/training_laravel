@@ -17,23 +17,30 @@ namespace App\Models{
  * @property int $id
  * @property string $name
  * @property string $image_url
- * @property string $discription
+ * @property string $description
+ * @property string $ordering
+ * @property int $is_publishing
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media
+ * @property-read int|null $media_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Te7aHoudini\LaravelTrix\Models\TrixAttachment> $trixAttachments
+ * @property-read int|null $trix_attachments_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Te7aHoudini\LaravelTrix\Models\TrixRichText> $trixRichText
+ * @property-read int|null $trix_rich_text_count
  * @method static \Illuminate\Database\Eloquent\Builder|News newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|News newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|News query()
  * @method static \Illuminate\Database\Eloquent\Builder|News whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|News whereDiscription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|News whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|News whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|News whereImageUrl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|News whereIsPublishing($value)
  * @method static \Illuminate\Database\Eloquent\Builder|News whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|News whereUpdatedAt($value)
- * @mixin \Eloquent
- * @property string $ordering
  * @method static \Illuminate\Database\Eloquent\Builder|News whereOrdering($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|News whereUpdatedAt($value)
  */
-	class News extends \Eloquent {}
+	class News extends \Eloquent implements \Spatie\MediaLibrary\HasMedia {}
 }
 
 namespace App\Models{
@@ -70,7 +77,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
- * @mixin \Eloquent
  */
 	class User extends \Eloquent {}
 }

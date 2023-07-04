@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('image_url');
-            $table->string('discription',512);
+            $table->string('description',512);
             $table->string('ordering');
+            $table->boolean('is_publishing');
             $table->timestamps();
         });
     }
