@@ -36,7 +36,7 @@ Route::group([
     'as' => 'crm.',
     'prefix' => 'crm'
 ], function () {
-    Route::get('/crm','App\Http\Controllers\CRMControlerController@index')->name('crm');
+    Route::get('/','App\Http\Controllers\CRMControlerController@index')->name('crm');
     Route::get('/users', 'App\Http\Controllers\HomeController@editAllUsers')->name('users');
     Route::get('/users/{user}/edit', 'App\Http\Controllers\HomeController@editUser')->name('users.edit');
     Route::post('/users/{user}/update', 'App\Http\Controllers\HomeController@update')->name('users.update');
