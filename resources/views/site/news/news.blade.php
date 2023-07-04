@@ -4,6 +4,9 @@
         <div class="container">
             <div class="page-simple">
                 @forelse($news as $news_items)
+                    @if($news_items->getIsPublishing()=='1')
+
+
                     <div class="card" style="margin-bottom: 2rem;">
                         <div class="page-simple__h1" style="text-align: start;">
                             {{$news_items->getName()}}
@@ -16,10 +19,11 @@
                                     data-trix-content-type="application/pdf"
                                     class="attachment attachment--file attachment--pdf"><img
                                         src="{{$news_items->getImageUrl()}}" class="img-thumbnail" alt="..."></figure>
-                                {!! $news_items->getDiscription()!!}
+                                {!! $news_items->getDescription()!!}
                             </div>
                         </div>
                     </div>
+                    @endif
 
 
 
