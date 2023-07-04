@@ -14,7 +14,7 @@
 'label'=>'Текст',
 'name'=>'description',
 'type'=>'trix',
-'value'=>isset($news)?$news->getDiscription():'',
+'value'=>isset($news)?$news->getDescription():'',
 
 ])
 @include('forms._input',[

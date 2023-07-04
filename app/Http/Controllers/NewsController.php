@@ -68,6 +68,19 @@ class NewsController extends Controller
         return redirect()->route('crm.news.index');
     }
 
+    public function published(Request $request, News $news)
+    {
+        $frd = $request;
+        dd($frd);
+        $news->update([
+            'is_publishing' => $frd['is_publishing'] == '1'
+        ]);
+        $news->save();
+
+
+        return redirect()->route('crm.news.index');
+    }
+
     public function destroy(Request $request, News $news)
     {
         $news->delete($request);

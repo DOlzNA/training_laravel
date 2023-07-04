@@ -11,7 +11,9 @@
 
                         @include('forms.news-form')
                         <div>
-                        {{Form::checkbox('is_publishing','1',true)}}</div>
+                        {{Form::checkbox('is_publishing','1',true)}}
+
+                        </div>
                         <button class="btn btn-primary rounded-pill px-3">
                             Сохранить
                         </button>
