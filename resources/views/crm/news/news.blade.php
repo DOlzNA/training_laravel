@@ -1,7 +1,76 @@
 @extends('crm.layouts.app')
 @section('content')
 
-    <div class="container">
+    <div class="container wrapper-primary py-3 px-4">
+
+        <div class="row justify-content-between pb-2">
+
+{{--            фильтров нет--}}
+
+            <div class="col-lg">
+                <form method="GET" action="https://gastrolint.ru/crm/event-types" accept-charset="UTF-8"
+                      onchange="this.submit()">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <div class=" form-group position-relative  ">
+                                <label class="form-control-label " for="input_5350_order-by">Сортировка&nbsp;</label>
+                                <select id="input_5350_order-by" class="form-control   " name="order_by">
+                                    <option selected="selected" value="">Id</option>
+                                    <option value="name">Название</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-auto">
+                            <div class="row align-items-end">
+
+                                <div class="col-auto">
+                                    <div class="form-group ">
+                                        <label for="basic-url">Поиск&nbsp;</label>
+                                        <div class="input-group">
+                                            <input class="form-control  " name="search" type="text">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <a href="https://gastrolint.ru/crm/event-types" class="btn btn-outline-secondary mb-3">
+
+                                        <!-- <i class="fas fa-redo" aria-hidden="true"></i> Font Awesome fontawesome.com -->
+                                        Сбросить
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-auto pb-3">
+                <a href="{{route('crm.news.created')}}" class="btn btn-outline-success">
+                    Добавить новость
+
+                </a>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <div class="row">
             <div class="col-1">
                 №
