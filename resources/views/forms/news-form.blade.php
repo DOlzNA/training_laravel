@@ -12,7 +12,7 @@
 ])
 @include('forms._input',[
 'label'=>'Текст',
-'name'=>'discription',
+'name'=>'description',
 'type'=>'trix',
 'value'=>isset($news)?$news->getDiscription():'',
 
@@ -23,3 +23,9 @@
 'type'=>'string',
 'value'=>isset($news)?$news->getOrdering():'',
 ])
+{{--@include('forms._input',[--}}
+{{--'label'=>'Публикация',--}}
+{{--'name'=>'is_publishing',--}}
+{{--'type'=>'checkbox',--}}
+{{--'value'=>isset($news)?$news->getIsPublishing():'',--}}
+{{--])--}}

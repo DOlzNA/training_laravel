@@ -16,7 +16,7 @@ use Te7aHoudini\LaravelTrix\Traits\HasTrixRichText;
  * @property int $id
  * @property string $name
  * @property string $image_url
- * @property string $discription
+ * @property string $description
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|News newModelQuery()
@@ -30,6 +30,14 @@ use Te7aHoudini\LaravelTrix\Traits\HasTrixRichText;
  * @method static \Illuminate\Database\Eloquent\Builder|News whereUpdatedAt($value)
  * @property string $ordering
  * @method static \Illuminate\Database\Eloquent\Builder|News whereOrdering($value)
+ * @property int $is_publishing
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
+ * @property-read int|null $media_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Te7aHoudini\LaravelTrix\Models\TrixAttachment> $trixAttachments
+ * @property-read int|null $trix_attachments_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Te7aHoudini\LaravelTrix\Models\TrixRichText> $trixRichText
+ * @property-read int|null $trix_rich_text_count
+ * @method static \Illuminate\Database\Eloquent\Builder|News whereIsPublishing($value)
  * @mixin \Eloquent
  */
 
@@ -41,9 +49,26 @@ class News extends Model implements HasMedia
     protected $fillable = [
         'name',
         'image_url',
-        'discription',
+        'description',
         'ordering',
+        'is_publishing',
     ];
+
+    /**
+     * @return string
+     */
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     */
+    public function setDescription(string $description): void
+    {
+        $this->description = $description;
+    }
 
     /**
      * @return string
@@ -59,6 +84,22 @@ class News extends Model implements HasMedia
     public function setName(string $name): void
     {
         $this->name = $name;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIsPublishing(): int
+    {
+        return $this->is_publishing;
+    }
+
+    /**
+     * @param int $is_publishing
+     */
+    public function setIsPublishing(int $is_publishing): void
+    {
+        $this->is_publishing = $is_publishing;
     }
 
     /**
@@ -80,18 +121,12 @@ class News extends Model implements HasMedia
     /**
      * @return string
      */
-    public function getDiscription(): string
-    {
-        return $this->discription;
-    }
+
 
     /**
      * @param string $discription
      */
-    public function setDiscription(string $discription): void
-    {
-        $this->discription = $discription;
-    }
+
 
 
     /**

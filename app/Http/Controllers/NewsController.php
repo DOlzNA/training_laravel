@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\News;
-use App\Models\User;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist;
+use Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
-use function Pest\Laravel\delete;
-use function Pest\Laravel\get;
 
 
 class NewsController extends Controller
@@ -21,19 +23,18 @@ class NewsController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     * @return Application|Factory|View|\Illuminate\Foundation\Application
      */
-    public function create(Request $request)
+    public function create()
     {
         return view('crm.news.news-created');
     }
 
     /**
      * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist
-     * @throws \Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig
+     * @return RedirectResponse
+     * @throws FileDoesNotExist
+     * @throws FileIsTooBig
      */
     public function store(Request $request)
     {
@@ -42,19 +43,22 @@ class NewsController extends Controller
          * @var News $news
          */
 
+
         $news = News::create([
             'name' => $frd['name'],
             'image_url' => $frd['image_url'],
-            'discription' => $frd['discription'],
-            'ordering' => $frd['ordering']
+            'description' => $frd['description'],
+            'ordering' => $frd['ordering'],
+            'is_publishing' => $frd['is_publishing'] == '1'
         ]);
+
 
         if (isset($frd['image_url'])) {
 
             /**
              * @var Media $newsMedia
              */
-            $newsMedia = $news->addMedia($request->file('image_url'))->toMediaCollection('news-imgs')->first();
+            $newsMedia = $news->addMedia($request->file('image_url'))->toMediaCollection('news-imgs');
 
             if ($newsMedia !== null) {
                 $news->setImageUrl(str_replace(config('app.url'), '', $newsMedia->getUrl()));
@@ -77,13 +81,17 @@ class NewsController extends Controller
         return view('crm.news.news-edit', compact('news'));
     }
 
+    /**
+     * @throws FileDoesNotExist
+     * @throws FileIsTooBig
+     */
     public function update(Request $request, News $news)
     {
         $frd = $request;
         $news->update([
             'name' => $frd['name'] ?? '',
             'image_url' => $frd['image_url'] ?? '',
-            'discription' => $frd['discription'] ?? '',
+            'description' => $frd['description'] ?? '',
             'ordering' => $frd['ordering'] ?? '',
         ]);
         if (isset($frd['image_url'])) {
@@ -91,7 +99,7 @@ class NewsController extends Controller
             /**
              * @var Media $newsMedia
              */
-            $newsMedia = $news->addMedia($request->file('image_url'))->toMediaCollection('news-imgs')->first();
+            $newsMedia = $news->addMedia($request->file('image_url'))->toMediaCollection('news-imgs');
 
             if ($newsMedia !== null) {
                 $news->setImageUrl(str_replace(config('app.url'), '', $newsMedia->getUrl()));

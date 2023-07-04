@@ -5,7 +5,7 @@
 
         <div class="row justify-content-between pb-2">
 
-{{--            фильтров нет--}}
+            {{--            фильтров нет--}}
 
             <div class="col-lg">
                 <form method="GET" action="https://gastrolint.ru/crm/event-types" accept-charset="UTF-8"
@@ -32,7 +32,8 @@
                                     </div>
                                 </div>
                                 <div class="col-auto">
-                                    <a href="https://gastrolint.ru/crm/event-types" class="btn btn-outline-secondary mb-3">
+                                    <a href="https://gastrolint.ru/crm/event-types"
+                                       class="btn btn-outline-secondary mb-3">
 
                                         <!-- <i class="fas fa-redo" aria-hidden="true"></i> Font Awesome fontawesome.com -->
                                         Сбросить
@@ -52,25 +53,6 @@
         </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         <div class="row">
             <div class="col-1">
                 №
@@ -83,6 +65,9 @@
             </div>
             <div class="col-1 text-center">
                 Описание
+            </div>
+            <div class="col-1 text-center">
+                Публикация
             </div>
 
             <div class="col pr-5 text-right">
@@ -108,7 +93,10 @@
                         </div>
                     </div>
                     <div class="col-1 text-center">
-                        {!! $news_items->getDiscription()!!}
+                        {!! $news_items->getDescription()!!}
+                    </div>
+                    <div class="col-1 text-center">
+                        {!! $news_items->getIsPublishing()!!}
                     </div>
                     <div class="col float-right text-right">
 
