@@ -6,6 +6,8 @@
         <div class="row justify-content-between pb-2">
 
             {{--            не сортирует по id--}}
+            {{--            сброс не работает--}}
+            {{--            поиск и сортировка работают одновременоо без разделения--}}
 
             <div class="col-lg">
                 <form method="GET" action="{{route('crm.news.index')}}" accept-charset="UTF-8"

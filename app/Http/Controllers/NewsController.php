@@ -20,8 +20,10 @@ class NewsController extends Controller
         $frd = $request->all();
 //        dd($frd);
 //        $news=DB::table('$news')->orderBy('id');
-        if (isset($frd['order_by'])) {
-            $news = $news->orderBy($frd['order_by'])->get();
+        if (isset($frd['order_by'])and isset($frd['search'])) {
+            $news = $news->orderBy($frd['order_by'])
+                ->where('name','=',$frd['search'])
+                ->get();
         } else {
             $news = $news->orderBy('ordering')->get();
         }
@@ -31,6 +33,8 @@ class NewsController extends Controller
     /**
      * @return Application|Factory|View|\Illuminate\Foundation\Application
      */
+
+
     public function create()
     {
         return view('crm.news.news-created');
