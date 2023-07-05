@@ -15,10 +15,16 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class NewsController extends Controller
 {
-    public function index(News $news)
+    public function index(Request $request, News $news)
     {
+        $frd = $request->all();
+//        dd($frd);
 //        $news=DB::table('$news')->orderBy('id');
-        $news = $news->orderByDesc('name')->get();
+        if (isset($frd['order_by'])) {
+            $news = $news->orderBy($frd['order_by'])->get();
+        } else {
+            $news = $news->orderBy('ordering')->get();
+        }
         return view('crm.news.news', compact('news'));
     }
 
@@ -73,7 +79,7 @@ class NewsController extends Controller
         $frd = $news;
 
         $news->update([
-            'is_publishing' => $frd['is_publishing'] == '1' ?'0':'1'
+            'is_publishing' => $frd['is_publishing'] == '1' ? '0' : '1'
         ]);
         $news->save();
 

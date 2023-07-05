@@ -5,18 +5,19 @@
 
         <div class="row justify-content-between pb-2">
 
-            {{--            фильтров нет--}}
+            {{--            не сортирует по id--}}
 
             <div class="col-lg">
-                <form method="GET" action="https://gastrolint.ru/crm/event-types" accept-charset="UTF-8"
+                <form method="GET" action="{{route('crm.news.index')}}" accept-charset="UTF-8"
                       onchange="this.submit()">
                     <div class="row">
                         <div class="col-lg-2">
                             <div class=" form-group position-relative  ">
                                 <label class="form-control-label " for="input_5350_order-by">Сортировка&nbsp;</label>
                                 <select id="input_5350_order-by" class="form-control   " name="order_by">
-                                    <option selected="selected" value="">Id</option>
+                                    <option selected="selected" value="Id">Id</option>
                                     <option value="name">Название</option>
+                                    <option onchange="this.submit()" value="ordering">Порядок</option>
                                 </select>
                             </div>
                         </div>
@@ -32,7 +33,7 @@
                                     </div>
                                 </div>
                                 <div class="col-auto">
-                                    <a href="https://gastrolint.ru/crm/event-types"
+                                    <a href=""
                                        class="btn btn-outline-secondary mb-3">
 
                                         <!-- <i class="fas fa-redo" aria-hidden="true"></i> Font Awesome fontawesome.com -->
