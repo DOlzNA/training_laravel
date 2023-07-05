@@ -70,10 +70,10 @@ class NewsController extends Controller
 
     public function published(Request $request, News $news)
     {
-        $frd = $request;
-        dd($frd);
+        $frd = $news;
+
         $news->update([
-            'is_publishing' => $frd['is_publishing'] == '1'
+            'is_publishing' => $frd['is_publishing'] == '1' ?'0':'1'
         ]);
         $news->save();
 

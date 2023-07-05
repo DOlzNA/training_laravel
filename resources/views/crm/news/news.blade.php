@@ -96,17 +96,14 @@
                         {!! $news_items->getDescription()!!}
                     </div>
                     <div class="col-1 text-center">
-{{--                        {{Form::checkbox('is_publishing',$news_items->getIsPublishing(),$news_items->getIsPublishing(),['method'=>'UPDATE','url'=>route('crm.news.published',$news_items)])}}--}}
-{{--                        {{Form::close()}}--}}
 
-не работает
-                        {!! Form::model( $news_items, ['url' =>route ('crm.news.published', $news_items), 'method' => 'get' ]) !!}
+                        {{Form::model($news_items, ['url' =>route ('crm.news.published', $news_items), 'method' => 'get' ])}}
+                        <button>
+                            {!! $news_items->getIsPublishing()=='1'? 'Скрыть':'Показать'!!}
+                        </button>
+                        {{Form::close()}}
 
-                        <button>{!!  Form::checkbox('pub', '1', true) !!}1</button>
-                        {!! Form::close() !!}
-
-
-                        {!! $news_items->getIsPublishing()!!}
+                        {{$news_items->getIsPublishing()}}
                     </div>
                     <div class="col float-right text-right">
 
