@@ -48,7 +48,7 @@
                 </form>
             </div>
             <div class="col-lg-auto pb-3">
-                <a href="{{route('crm.news.created')}}" class="btn btn-outline-success">
+                <a href="{{route('crm.news.create')}}" class="btn btn-outline-success">
                     Добавить новость
 
                 </a>
@@ -77,46 +77,46 @@
                 Действия
             </div>
         </div>
-        @forelse($news as $news_items)
+        @forelse($news as $newsItem)
 
             <div class="border-bottom mb-1">
                 <div class="row py-1" style="background-color: #c1f0c1">
                     <div class="col-1">
-                        {{$news_items->getKey()}}
+                        {{$newsItem->getKey()}}
                     </div>
                     <div class="col-4">
-                        {{$news_items->getName()}}
+                        {{$newsItem->getName()}}
                     </div>
                     <div class="col-2">
                         <div class="row">
                             <div class="col-12 small text-secondary">
                                 <img
-                                    src="{{$news_items->getImageUrl()}}" class="img-thumbnail" alt="...">
+                                    src="{{$newsItem->getImageUrl()}}" class="img-thumbnail" alt="...">
                             </div>
                         </div>
                     </div>
                     <div class="col-1 text-center">
-                        {!! $news_items->getDescription()!!}
+                        {!! $newsItem->getDescription()!!}
                     </div>
                     <div class="col-1 text-center">
 
-                        {{Form::model($news_items, ['url' =>route ('crm.news.published', $news_items), 'method' => 'get' ])}}
+                        {{Form::model($newsItem, ['url' =>route ('crm.news.published', $newsItem), 'method' => 'get' ])}}
                         <button>
-                            {!! $news_items->getIsPublishing()=='1'? 'Скрыть':'Показать'!!}
+                            {!! $newsItem->isPublishing()? 'Скрыть':'Показать'!!}
                         </button>
                         {{Form::close()}}
 
-                        {{$news_items->getIsPublishing()}}
+                        {{$newsItem->isPublishing()}}
                     </div>
                     <div class="col float-right text-right">
 
-                        {{Form::open(['method'=>"DELETE", "url"=>route('crm.news.destroy',$news_items)])}}
+                        {{Form::open(['method'=>"DELETE", "url"=>route('crm.news.destroy',$newsItem)])}}
                         <button class="btn btn-danger rounded-pill px-3">
                             delete
                         </button>
                         {{Form::close()}}
 
-                        <a href="{{route('crm.news.edit',$news_items)}}" class="btn btn-success">
+                        <a href="{{route('crm.news.edit',$newsItem)}}" class="btn btn-success">
 
                             Редактировать
                         </a>

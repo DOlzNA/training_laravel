@@ -16,4 +16,9 @@ return view('welcome');
         $news = $news->orderByDesc('ordering')->get();
         return view('site.news.news', compact('news'));
     }
+
+    public function shop()
+    {
+    return view('site.shop.shop');
+    }
 }

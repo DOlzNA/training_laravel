@@ -30,7 +30,7 @@ use Te7aHoudini\LaravelTrix\Traits\HasTrixRichText;
  * @method static \Illuminate\Database\Eloquent\Builder|News whereUpdatedAt($value)
  * @property string $ordering
  * @method static \Illuminate\Database\Eloquent\Builder|News whereOrdering($value)
- * @property int $is_publishing
+ * @property boolean $is_publishing
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
  * @property-read int|null $media_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Te7aHoudini\LaravelTrix\Models\TrixAttachment> $trixAttachments
@@ -38,9 +38,11 @@ use Te7aHoudini\LaravelTrix\Traits\HasTrixRichText;
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Te7aHoudini\LaravelTrix\Models\TrixRichText> $trixRichText
  * @property-read int|null $trix_rich_text_count
  * @method static \Illuminate\Database\Eloquent\Builder|News whereIsPublishing($value)
+ * @property int $is_published
+ * @method static \Illuminate\Database\Eloquent\Builder|News whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|News whereIsPublished($value)
  * @mixin \Eloquent
  */
-
 class News extends Model implements HasMedia
 {
     use InteractsWithMedia;
@@ -52,6 +54,9 @@ class News extends Model implements HasMedia
         'description',
         'ordering',
         'is_publishing',
+    ];
+    protected $casts = [
+        'is_publishing' => 'boolean',
     ];
 
     /**
@@ -87,17 +92,17 @@ class News extends Model implements HasMedia
     }
 
     /**
-     * @return int
+     * @return bool
      */
-    public function getIsPublishing(): int
+    public function isPublishing(): bool
     {
         return $this->is_publishing;
     }
 
     /**
-     * @param int $is_publishing
+     * @param bool $is_publishing
      */
-    public function setIsPublishing(int $is_publishing): void
+    public function setIsPublishing(bool $is_publishing): void
     {
         $this->is_publishing = $is_publishing;
     }
@@ -128,7 +133,6 @@ class News extends Model implements HasMedia
      */
 
 
-
     /**
      * @return string
      */
@@ -144,6 +148,7 @@ class News extends Model implements HasMedia
     {
         $this->ordering = $ordering;
     }
+
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')

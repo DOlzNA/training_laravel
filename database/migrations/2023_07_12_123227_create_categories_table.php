@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('news', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('image_url');
-            $table->string('description',512);
-            $table->string('ordering');
-            $table->boolean('is_published');
+            $table->foreignId('parent_id')->references('id')->on('categories')->cascadeOnUpdate()->cascadeOnUpdate();
             $table->timestamps();
         });
     }
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('news');
+        Schema::dropIfExists('categories');
     }
 };
