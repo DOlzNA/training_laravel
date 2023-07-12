@@ -8,9 +8,9 @@
             </div>
 
             <ul class="nav nav-pills">
-                <li class="nav-item"><a href={{route('site.welcome')}} class="nav-link active" aria-current="page">Home</a></li>
+                <li class="nav-item"><a href={{route('site.welcome')}} class="nav-link" >Home</a></li>
                 <li class="nav-item"><a href={{route('site.news.index')}} class="nav-link">Новости</a></li>
-                <li class="nav-item"><a href="#" class="nav-link"> #</a></li>
+                <li class="nav-item"><a href={{route('site.shop.index')}} class="nav-link"> Товары</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">About</a></li>
             </ul>
@@ -36,7 +36,7 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('site.profile.edit')">
+                        <x-dropdown-link :href="route('site.profile.edit',Auth::user())">
                             {{ __('Profile') }}
                         </x-dropdown-link>
 

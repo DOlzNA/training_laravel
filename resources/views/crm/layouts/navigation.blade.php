@@ -8,10 +8,10 @@
             </div>
 
             <ul class="nav nav-pills">
-                <li class="nav-item"><a href="{{ route('crm.crm') }}" class="nav-link active" aria-current="page">Home</a></li>
+                <li class="nav-item"><a href="{{ route('crm.home') }}" class="nav-link active" aria-current="page">Home</a></li>
                 <li class="nav-item"><a href={{route('crm.news.index')}} class="nav-link">Новости</a></li>
 
-                <li class="nav-item"><a href="{{route('crm.users')}}" class="nav-link">пользователи</a></li>
+                <li class="nav-item"><a href="{{route('crm.users.index')}}" class="nav-link">пользователи</a></li>
                 <li class="nav-item"><a href=# class="nav-link">#</a></li>
             </ul>
             <div class="hidden sm:flex sm:items-center sm:ml-6">
