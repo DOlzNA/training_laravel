@@ -12,7 +12,8 @@
                 <li class="nav-item"><a href={{route('crm.news.index')}} class="nav-link">Новости</a></li>
 
                 <li class="nav-item"><a href="{{route('crm.users.index')}}" class="nav-link">пользователи</a></li>
-                <li class="nav-item"><a href=# class="nav-link">#</a></li>
+                <li class="nav-item"><a href={{route('crm.categories.index')}} class="nav-link">Категории</a></li>
+                <li class="nav-item"><a href={{route('crm.products.index')}} class="nav-link">Продукты</a></li>
             </ul>
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <x-dropdown align="right" width="48">
