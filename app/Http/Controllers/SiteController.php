@@ -10,10 +10,10 @@ class SiteController extends Controller
     {
 return view('welcome');
     }
-    public function news(News $news)
+    public function news()
     {
 //        $news=DB::table('$news')->orderBy('id');
-        $news = $news->orderByDesc('ordering')->get();
+        $news = News::query()->orderByDesc('ordering')->get();
         return view('site.news.news', compact('news'));
     }
 

@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Te7aHoudini\LaravelTrix\Models\TrixAttachment;
+use Te7aHoudini\LaravelTrix\Models\TrixRichText;
 use Te7aHoudini\LaravelTrix\Traits\HasTrixRichText;
 
 
@@ -17,30 +19,27 @@ use Te7aHoudini\LaravelTrix\Traits\HasTrixRichText;
  * @property string $name
  * @property string $image_url
  * @property string $description
+ * @property string $ordering
+ * @property bool $is_published
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
+ * @property-read int|null $media_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, TrixAttachment> $trixAttachments
+ * @property-read int|null $trix_attachments_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, TrixRichText> $trixRichText
+ * @property-read int|null $trix_rich_text_count
  * @method static \Illuminate\Database\Eloquent\Builder|News newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|News newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|News query()
  * @method static \Illuminate\Database\Eloquent\Builder|News whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|News whereDiscription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|News whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|News whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|News whereImageUrl($value)
- * @method static \Illuminate\Database\Eloquent\Builder|News whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|News whereUpdatedAt($value)
- * @property string $ordering
- * @method static \Illuminate\Database\Eloquent\Builder|News whereOrdering($value)
- * @property boolean $is_publishing
- * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
- * @property-read int|null $media_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \Te7aHoudini\LaravelTrix\Models\TrixAttachment> $trixAttachments
- * @property-read int|null $trix_attachments_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \Te7aHoudini\LaravelTrix\Models\TrixRichText> $trixRichText
- * @property-read int|null $trix_rich_text_count
- * @method static \Illuminate\Database\Eloquent\Builder|News whereIsPublishing($value)
- * @property int $is_published
- * @method static \Illuminate\Database\Eloquent\Builder|News whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|News whereIsPublished($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|News whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|News whereOrdering($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|News whereUpdatedAt($value)
  * @mixin \Eloquent
  */
 class News extends Model implements HasMedia
@@ -53,11 +52,27 @@ class News extends Model implements HasMedia
         'image_url',
         'description',
         'ordering',
-        'is_publishing',
+        'is_published',
     ];
     protected $casts = [
-        'is_publishing' => 'boolean',
+        'is_published' => 'boolean',
     ];
+
+    /**
+     * @return bool
+     */
+    public function isPublished(): bool
+    {
+        return $this->is_published;
+    }
+
+    /**
+     * @param bool $is_published
+     */
+    public function setIsPublished(bool $is_published): void
+    {
+        $this->is_published = $is_published;
+    }
 
     /**
      * @return string
@@ -91,21 +106,7 @@ class News extends Model implements HasMedia
         $this->name = $name;
     }
 
-    /**
-     * @return bool
-     */
-    public function isPublishing(): bool
-    {
-        return $this->is_publishing;
-    }
 
-    /**
-     * @param bool $is_publishing
-     */
-    public function setIsPublishing(bool $is_publishing): void
-    {
-        $this->is_publishing = $is_publishing;
-    }
 
     /**
      * @return string
@@ -122,15 +123,6 @@ class News extends Model implements HasMedia
     {
         $this->image_url = $image_url;
     }
-
-    /**
-     * @return string
-     */
-
-
-    /**
-     * @param string $discription
-     */
 
 
     /**

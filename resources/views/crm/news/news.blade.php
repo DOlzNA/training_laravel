@@ -30,7 +30,9 @@
                                     <div class="form-group ">
                                         <label for="basic-url">Поиск&nbsp;</label>
                                         <div class="input-group">
-                                            <input class="form-control  " name="search" type="text">
+                                            <label>
+                                                <input class="form-control  " name="search" type="text">
+                                            </label>
                                         </div>
                                     </div>
                                 </div>
@@ -102,11 +104,11 @@
 
                         {{Form::model($newsItem, ['url' =>route ('crm.news.published', $newsItem), 'method' => 'get' ])}}
                         <button>
-                            {!! $newsItem->isPublishing()? 'Скрыть':'Показать'!!}
+                            {!! $newsItem->isPublished()? 'Скрыть':'Показать'!!}
                         </button>
                         {{Form::close()}}
 
-                        {{$newsItem->isPublishing()}}
+                        {{$newsItem->isPublished()}}
                     </div>
                     <div class="col float-right text-right">
 
