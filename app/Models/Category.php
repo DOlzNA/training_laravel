@@ -50,17 +50,18 @@ class Category extends Model
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getParentId(): int
+    public function getParentId(): ?int
     {
         return $this->parent_id;
     }
 
     /**
-     * @param int $parent_id
+     * @param int|null $parent_id
+     * @return void
      */
-    public function setParentId(int $parent_id): void
+    public function setParentId(?int $parent_id): void
     {
         $this->parent_id = $parent_id;
     }

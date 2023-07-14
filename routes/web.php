@@ -2,6 +2,11 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CRMControlerController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NewsController;
+use \App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,18 +43,27 @@ Route::group([
     'as' => 'crm.',
     'prefix' => 'crm'
 ], function () {
-    Route::get('/','App\Http\Controllers\CRMControlerController@index')->name('home');
-    Route::get('/users', 'App\Http\Controllers\HomeController@editAllUsers')->name('users.index');
-    Route::get('/users/{user}/edit', 'App\Http\Controllers\HomeController@editUser')->name('users.edit');
-    Route::post('/users/{user}/update', 'App\Http\Controllers\HomeController@update')->name('users.update');
-    Route::delete('/users/{user}','App\Http\Controllers\HomeController@destroy')->name('users.destroy');
+    Route::get('/',[CRMControlerController::class,'index'])->name('home');
+    Route::get('/users', [HomeController::class,'editAllUsers'])->name('users.index');
+    Route::get('/users/{user}/edit', [HomeController::class,'editUser'])->name('users.edit');
+    Route::post('/users/{user}/update', [HomeController::class,'update'])->name('users.update');
+    Route::delete('/users/{user}',[HomeController::class,'destroy'])->name('users.destroy');
 
-    Route::get('/news/created', 'App\Http\Controllers\NewsController@create')->name('news.create');
-    Route::POST('/news/store', 'App\Http\Controllers\NewsController@store')->name('news.store');
-    Route::get('/news', 'App\Http\Controllers\NewsController@index')->name('news.index');
-    Route::get('/news/{news}/edit', 'App\Http\Controllers\NewsController@edit')->name('news.edit');
-    Route::post('/news/{news}/update', 'App\Http\Controllers\NewsController@update')->name('news.update');
-    Route::delete('/news/{news}','App\Http\Controllers\NewsController@destroy')->name('news.destroy');
-    Route::get('/news/{news}', 'App\Http\Controllers\NewsController@published')->name('news.published');
+    Route::get('/news/create', [NewsController::class,'create'])->name('news.create');
+    Route::POST('/news/store', [NewsController::class,'store'])->name('news.store');
+    Route::get('/news', [NewsController::class,'index'])->name('news.index');
+    Route::get('/news/{news}/edit', [NewsController::class,'edit'])->name('news.edit');
+    Route::post('/news/{news}/update', [NewsController::class,'update'])->name('news.update');
+    Route::delete('/news/{news}',[NewsController::class,'destroy'])->name('news.destroy');
+    Route::get('/news/{news}', [NewsController::class,'published'])->name('news.published');
+
+    Route::get('/categories',[CategoryController::class,'index'])->name('categories.index');
+    Route::get('/categories/create',[CategoryController::class,'create'])->name('categories.create');
+    Route::get('/categories/{category_id}/childs',[CategoryController::class,'indexChild'])->name('categories.child.index');
+    Route::get('/categories/child/create',[CategoryController::class,'createChild'])->name('categories.child.create');
+    Route::post('categories/store',[CategoryController::class,'store'])->name('categories.store');
+    Route::delete('categories/{categories}',[CategoryController::class,'destroy'])->name('categories.destroy');
+
+    Route::get('/products',[ProductController::class,'index'])->name('products.index');
 });
 require __DIR__ . '/auth.php';
