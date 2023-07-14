@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('description');
             $table->string('image_url');
             $table->boolean('is_published');
-            $table->foreignId('category_id')->references('id')->on('categories')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('category_id')->nullable()->references('id')->on('categories')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }
