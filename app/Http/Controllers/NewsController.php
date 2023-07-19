@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\NewsRequest;
 use App\Models\News;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -15,7 +16,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class NewsController extends Controller
 {
-    public function index(Request $request)
+    public function index(NewsRequest $request)
     {
         $frd = $request->all();
 //        dd($frd);
@@ -46,7 +47,7 @@ class NewsController extends Controller
      * @throws FileDoesNotExist
      * @throws FileIsTooBig
      */
-    public function store(Request $request)
+    public function store(NewsRequest $request)
     {
         $frd = $request;
         /**
@@ -93,7 +94,7 @@ class NewsController extends Controller
 
     public function destroy(Request $request, News $news)
     {
-        $news->delete($request);
+        $news->delete();
 
 
         return redirect()->route('crm.news.index');
@@ -108,7 +109,7 @@ class NewsController extends Controller
      * @throws FileDoesNotExist
      * @throws FileIsTooBig
      */
-    public function update(Request $request, News $news)
+    public function update(NewsRequest $request, News $news)
     {
         $frd = $request;
         $news->update([
