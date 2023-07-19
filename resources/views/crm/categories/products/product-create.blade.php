@@ -6,10 +6,14 @@
             <div class="col-md-4">
                 <div class="row justify-content-end">
                     <div class="col-auto">
-{{--{{dd($parent_id)}}--}}
-                        {{Form::open(['url'=>route('crm.categories.children.store',['parent_id'=>$category_id]),'method'=>'POST'])}}
 
-                        @include('crm.categories.forms.category-child-from')
+                        {{Form::open(['url'=>route('crm.products.store'),'method'=>'POST',"enctype"=>"multipart/form-data"])}}
+
+                        @include('crm.categories.forms.product-form')
+                        <div>
+                            {{Form::checkbox('is_published','1',true)}}
+
+                        </div>
                         <button class="btn btn-primary rounded-pill px-3">
                             Сохранить
                         </button>

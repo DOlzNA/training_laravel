@@ -4,7 +4,7 @@
         <div class="container">
             <div class="page-simple">
                 @forelse($news as $newsItem)
-                    @if($newsItem->isPublising())
+                    @if($newsItem->isPublished())
 
 
                     <div class="card" style="margin-bottom: 2rem;">

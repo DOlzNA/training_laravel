@@ -10,7 +10,7 @@
             <ul class="nav nav-pills">
                 <li class="nav-item"><a href={{route('site.welcome')}} class="nav-link" >Home</a></li>
                 <li class="nav-item"><a href={{route('site.news.index')}} class="nav-link">Новости</a></li>
-                <li class="nav-item"><a href={{route('site.shop.index')}} class="nav-link"> Товары</a></li>
+                <li class="nav-item"><a href={{route('site.shops.index')}} class="nav-link"> Товары</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">About</a></li>
             </ul>

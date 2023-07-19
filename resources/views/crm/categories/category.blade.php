@@ -85,16 +85,16 @@
                     </div>
                     <div class="col float-right text-right">
 
-                        {{Form::open(['method'=>"DELETE", "url"=>route('crm.news.destroy',$category)])}}
+                        {{Form::open(['method'=>"DELETE", "url"=>route('crm.categories.destroy',$category)])}}
                         <button class="btn btn-danger rounded-pill px-3">
                             delete
                         </button>
                         {{Form::close()}}
+{{--нет редактирования категорий--}}
+{{--                        <a href="{{route('crm.categories.edit',$category)}}" class="btn btn-success">--}}
 
-                        <a href="{{route('crm.news.edit',$category)}}" class="btn btn-success">
-
-                            Редактировать
-                        </a>
+{{--                            Редактировать--}}
+{{--                        </a>--}}
 
                     </div>
                 </div>

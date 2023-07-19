@@ -45,7 +45,7 @@
                 </form>
             </div>
             <div class="col-lg-auto pb-3">
-                <a href="{{route('crm.categories.child.create')}}" class="btn btn-outline-success">
+                <a href="{{route('crm.categories.child.create',$category_id)}}" class="btn btn-outline-success">
                     Добавить категорию
 
                 </a>
@@ -61,7 +61,7 @@
                 Название
             </div>
             <div class="col-2">
-                Подкатегория
+                родительскаяка категория
             </div>
         </div>
         @forelse($categories as $category)
@@ -84,7 +84,7 @@
                         </div>
                         <div class="col float-right text-right">
 
-                            {{Form::open(['method'=>"DELETE", "url"=>route('crm.news.destroy',$category)])}}
+                            {{Form::open(['method'=>"DELETE", "url"=>route('crm.categories.children.destroy',$category)])}}
                             <button class="btn btn-danger rounded-pill px-3">
                                 delete
                             </button>

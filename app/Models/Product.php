@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -145,7 +146,13 @@ class Product extends Model implements HasMedia
     {
         $this->category_id = $category_id;
     }
+
     protected $casts = [
         'is_published' => 'boolean',
     ];
+
+    public static function viewProducts(?int $category_id)
+    {
+        return Product::whereCategoryId($category_id)->get();
+    }
 }

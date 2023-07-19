@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\News;
+use App\Models\Product;
+use Illuminate\Http\Request;
 
 class SiteController extends Controller
 {
     public function index()
     {
-return view('welcome');
+        return view('welcome');
     }
+
     public function news()
     {
 //        $news=DB::table('$news')->orderBy('id');
@@ -17,8 +21,19 @@ return view('welcome');
         return view('site.news.news', compact('news'));
     }
 
-    public function shop()
+    public function shop(Request $request)
     {
-    return view('site.shop.shop');
+        $category_id = (int)$request->input('category_id');
+        $categories = Category::get();
+
+        if ($category_id != null) {
+            $products = Product::viewProducts($category_id);
+        } else {
+            $products = Product::get();
+        }
+
+        return view('site.shop.shop', compact('categories', 'products'));
     }
+
+
 }
