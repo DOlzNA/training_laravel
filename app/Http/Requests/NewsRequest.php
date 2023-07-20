@@ -22,8 +22,8 @@ class NewsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'=>'unique:news,name|max:30',
-            'description'=>'max:300'
+            'name' => 'unique:news,name|max:30',
+            'description' => 'max:300'
         ];
     }
 }
