@@ -16,14 +16,19 @@ class ProductController extends Controller
         $products = Product::get();
         return view('crm.categories.products.product', compact('products'));
     }
+
     public function create()
     {
-        return view('crm.categories.products.product-create');
+        $categories = Category::get();
+        return view('crm.categories.products.product-create', compact('categories'));
     }
+
     public function store(Request $request)
     {
-        $data=$request->all(['name','price','description','image_url','is_published','category_id']);
-        $product=Product::create($data);
+
+        $data = $request->all(['name', 'price', 'description', 'image_url', 'is_published', 'category_id']);
+//        dd($data);
+        $product = Product::create($data);
 
         if (isset($data['image_url'])) {
 
@@ -42,6 +47,7 @@ class ProductController extends Controller
         return redirect()->route('crm.products.index');
 
     }
+
     public function destroy(Product $product)
     {
         $product->delete();

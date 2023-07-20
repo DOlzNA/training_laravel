@@ -7,6 +7,6 @@
 @include('forms._input',[
 'label'=>'Подкатегория',
 'name'=>'parent_id',
-'type'=>'select',
+'type'=>'string',
 'value'=>isset($category)?$category->getParentId():'',
 ])

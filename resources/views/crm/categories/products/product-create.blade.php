@@ -14,6 +14,9 @@
                             {{Form::checkbox('is_published','1',true)}}
 
                         </div>
+                        <div>
+                            {{Form::select('category_id', $categories->pluck('name','id'))}}
+                        </div>
                         <button class="btn btn-primary rounded-pill px-3">
                             Сохранить
                         </button>

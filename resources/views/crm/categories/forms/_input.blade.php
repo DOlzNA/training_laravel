@@ -2,12 +2,17 @@
     <label class="form-label">{{$label}}</label>
     {{--        @trix(\App\News::class, 'content')--}}
 
-{{--    @if($type != 'trix')--}}
+{{--    @if($type != 'select')--}}
         <input name="{{$name}}" type="{{$type ?? 'string'}}" value="{{$value}}" class="form-control "
                aria-label="" aria-describedby="basic-addon1">
 {{--    @else--}}
-{{--        <input id="x" type="hidden" name="description" value="{!! $value !!}" />--}}
-{{--        <trix-editor input="x" class="trix-content"></trix-editor>--}}
+{{--        <label>--}}
+{{--            <select size="3" name="{{$name}}">--}}
+{{--                <option>123</option>--}}
+{{--                <option>123</option>--}}
+{{--            </select>--}}
+{{--        </label>--}}
+
 {{--    @endif--}}
 </div>
 

@@ -83,7 +83,7 @@
                     </div>
 
                 @empty
-                    <div>Игорь пидр</div>
+                    <div>Ничего нет</div>
                 @endforelse
             </div>
         </div>
