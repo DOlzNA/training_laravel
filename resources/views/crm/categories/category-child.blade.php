@@ -90,7 +90,7 @@
                             </button>
                             {{Form::close()}}
 
-                            <a href="{{route('crm.news.edit',$category)}}" class="btn btn-success">
+                            <a href="{{route('crm.categories.children.edit',$category)}}" class="btn btn-success">
 
                                 Редактировать
                             </a>

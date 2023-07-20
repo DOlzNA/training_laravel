@@ -2,11 +2,11 @@
 'label'=>'имя',
 'name'=>'name',
 'type'=>'string',
-'value'=>isset($categories)?$categories->getName():'',
+'value'=>isset($category)?$category->getName():'',
 ])
 @include('forms._input',[
 'label'=>'Подкатегория',
 'name'=>'parent_id',
 'type'=>'select',
-'value'=>isset($categories)?$categories->getParentId():'',
+'value'=>isset($category)?$category->getParentId():'',
 ])

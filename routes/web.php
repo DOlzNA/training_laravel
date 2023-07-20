@@ -60,10 +60,14 @@ Route::group([
 
     Route::get('/categories',[CategoryController::class,'index'])->name('categories.index');
     Route::get('/categories/create',[CategoryController::class,'create'])->name('categories.create');
+    Route::get('/categories/{category}/edit', [CategoryController::class,'edit'])->name('categories.edit');
+    Route::post('/categories/{category}/update', [CategoryController::class,'update'])->name('categories.update');
     Route::get('/categories/{category_id}/children',[CategoryController::class,'indexChild'])->name('categories.child.index');
     Route::get('/categories/child/{category_id}/create',[CategoryController::class,'createChild'])->name('categories.child.create');
     Route::post('categories/store',[CategoryController::class,'store'])->name('categories.store');
     Route::post('categories/children/{parent_id}/store',[CategoryController::class,'storeChild'])->name('categories.children.store');
+    Route::get('/categories/children/{category}/edit', [CategoryController::class,'editChild'])->name('categories.children.edit');
+    Route::post('/categories/children/{category}/update', [CategoryController::class,'updateChild'])->name('categories.children.update');
     Route::delete('categories/{category}',[CategoryController::class,'destroy'])->name('categories.destroy');
     Route::delete('categories/children/{category}',[CategoryController::class,'destroyChild'])->name('categories.children.destroy');
 

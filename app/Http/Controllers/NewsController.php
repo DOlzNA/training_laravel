@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Http\Requests\NewsRequest;
 use App\Models\News;
 use Illuminate\Contracts\Foundation\Application;
@@ -16,14 +17,14 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class NewsController extends Controller
 {
-    public function index(NewsRequest $request)
+    public function index(Request $request)
     {
         $frd = $request->all();
 //        dd($frd);
 //        $news=DB::table('$news')->orderBy('id');
-        if (isset($frd['order_by'])and isset($frd['search'])) {
+        if (isset($frd['order_by']) and isset($frd['search'])) {
             $news = News::query()->orderBy($frd['order_by'])
-                ->where('name','=',$frd['search'])
+                ->where('name', '=', $frd['search'])
                 ->get();
         } else {
             $news = News::query()->orderBy('ordering')->get();

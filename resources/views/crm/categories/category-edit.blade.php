@@ -1,15 +1,15 @@
 @extends('crm.layouts.app')
-@section('content')
 
+@section('content')
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-4">
                 <div class="row justify-content-end">
                     <div class="col-auto">
-                        {{--{{dd($parent_id)}}--}}
-                        {{Form::open(['url'=>route('crm.categories.children.store',['parent_id'=>$category_id]),'method'=>'POST'])}}
 
-                        @include('crm.categories.forms.category-child-form')
+                        {{Form::model($category,['url'=>route('crm.categories.update',$category),'method'=>'POST',"enctype"=>"multipart/form-data"])}}
+
+                        @include('crm.categories.forms.category-form',$category)
                         <button class="btn btn-primary rounded-pill px-3">
                             Сохранить
                         </button>

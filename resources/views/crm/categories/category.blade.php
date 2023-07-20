@@ -67,38 +67,40 @@
         @forelse($categories as $category)
             @if($category->getParentId()==null)
 
-            <div class="border-bottom mb-1">
-                <div class="row py-1" style="background-color: #c1f0c1">
-                    <div class="col-1">
-                        {{$category->getKey()}}
-                    </div>
-                    <div class="col-4">
-                        {{$category->getName()}}
-                    </div>
-                    <div class="col-2">
-                        <div class="row">
-                            <div class="col-12 small text-secondary">
+                <div class="border-bottom mb-1">
+                    <div class="row py-1" style="background-color: #c1f0c1">
+                        <div class="col-1">
+                            {{$category->getKey()}}
+                        </div>
+                        <div class="col-4">
+                            {{$category->getName()}}
+                        </div>
+                        <div class="col-2">
+                            <div class="row">
+                                <div class="col-12 small text-secondary">
 
-                                <button class="btn btn-primary"> <a href="{{route('crm.categories.child.index',$category)}}">Просмотр</a> </button>
+                                    <button class="btn btn-primary"><a
+                                            href="{{route('crm.categories.child.index',$category)}}">Просмотр</a>
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col float-right text-right">
+                        <div class="col float-right text-right">
 
-                        {{Form::open(['method'=>"DELETE", "url"=>route('crm.categories.destroy',$category)])}}
-                        <button class="btn btn-danger rounded-pill px-3">
-                            delete
-                        </button>
-                        {{Form::close()}}
-{{--нет редактирования категорий--}}
-{{--                        <a href="{{route('crm.categories.edit',$category)}}" class="btn btn-success">--}}
+                            {{Form::open(['method'=>"DELETE", "url"=>route('crm.categories.destroy',$category)])}}
+                            <button class="btn btn-danger rounded-pill px-3">
+                                delete
+                            </button>
+                            {{Form::close()}}
+                            {{--нет редактирования категорий--}}
+                            <a href="{{route('crm.categories.edit',$category)}}" class="btn btn-success">
 
-{{--                            Редактировать--}}
-{{--                        </a>--}}
+                                Редактировать
+                            </a>
 
+                        </div>
                     </div>
                 </div>
-            </div>
             @endif
         @empty
         @endforelse

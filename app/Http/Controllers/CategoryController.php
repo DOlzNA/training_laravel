@@ -28,7 +28,19 @@ class CategoryController extends Controller
 
         return view('crm.categories.category-child-create', compact('category_id'));
     }
+    public function edit(Category $category)
+    {
+        return view('crm.categories.category-edit', compact('category'));
+    }
 
+    public function update(CategoryRequest $request, Category $category)
+    {
+        $data=$request->all('name', 'category_id');
+//        dd($data);
+        $category->update($data);
+        $category->save();
+        return redirect()->route('crm.categories.index');
+    }
     public function indexChild(Request $request, int $category_id)
     {
         $categories = Category::whereParentId($category_id)->get();
@@ -59,6 +71,22 @@ class CategoryController extends Controller
 
         return redirect()->route('crm.categories.index');
     }
+
+    public function editChild(Category $category)
+    {
+        return view('crm.categories.category-child-edit', compact('category'));
+    }
+
+    public function updateChild(CategoryRequest $request, Category $category)
+    {
+        $data=$request->all('name', 'category_id');
+//        dd($data);
+        $category->update($data);
+        $category->save();
+        return redirect()->route('crm.categories.index');
+    }
+
+
 
     public function destroy(Request $request, Category $category)
     {
